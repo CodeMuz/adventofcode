@@ -42,12 +42,34 @@ int getWrappingQuanitity(int length, int width, int height){
     return paper;
 }
 
+int getRibbonLength(int length, int width, int height){
+
+  int ribbon = 0;
+  int bow = 0;
+
+  int d[3];
+  d[0] = length;
+  d[1] = width;
+  d[2] = height;
+
+  std::sort(std::begin(d), std::end(d));
+
+  ribbon += (2 * d[0]) + (2 * d[1]);
+
+  bow += (length * width * height);
+
+  ribbon += bow;
+
+  return ribbon;
+}
+
 int main () {
     string line;
     ifstream myfile ("input.txt");
     if (myfile.is_open())
     {
-        int total = 0;        
+        int totalPaper = 0;        
+        int totalRibbon = 0;
         while ( getline (myfile,line) )
         {
 
@@ -76,10 +98,14 @@ int main () {
                 
             }
             
-            total += getWrappingQuanitity(length, width, height);            
+            totalPaper += getWrappingQuanitity(length, width, height);
+            totalRibbon += getRibbonLength(length, width, height);
         }
-        cout << "total = ";
-        cout << total << endl;
+        cout << "totalPaper = ";
+        cout << totalPaper << endl;
+        cout << "totalRibbon = ";
+        cout << totalRibbon << endl;
+
         myfile.close();
     }
     
