@@ -31,14 +31,9 @@ function isWordNice($word){
     	}
 
     	$prev = $word[$i];
-    }
-
-    // echo $vowelCount."<br/>";
-    // echo (int)$hasDouble."<br/>";
-    // echo (int)badWordCheck($word)."<br/>";        
+    }        
 
     if(($vowelCount >= 3) && (badWordCheck($word) == true) && ($hasDouble == true)){        	
-    	
     	return true;	
     } else {
     	return false;
@@ -51,22 +46,6 @@ if ($handle) {
         	$niceStrings++;
         }
     }
-
-	$string = 'ugknbfddgicrmopn';
-    echo $string." ".(int)isWordNice($string)."<br/>";
-
-    $string = 'aaa';
-    echo $string." ".(int)isWordNice($string)."<br/>";
-
-    $string = 'jchzalrnumimnmhp';
-    echo $string." ".(int)isWordNice($string)."<br/>";
-
-    $string = 'haegwjzuvuyypxyu';
-    echo $string." ".(int)isWordNice($string)."<br/>";
-
-    $string = 'dvszwmarrgswjxmb';
-    echo $string." ".(int)isWordNice($string)."<br/>";
-
     fclose($handle);
 } else {
     // error opening the file.
