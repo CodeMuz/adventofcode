@@ -61,9 +61,9 @@ Ref: Travelling salesmen, with inverse waited graphs for part 2.
 https://github.com/dmishin/tsp-solver
 
 &nbsp;
-#### Day 9
+#### Day 10
  > Language: Python
  
 &nbsp; 
-#### Day 10
+#### Day 11
  > Language: Python
