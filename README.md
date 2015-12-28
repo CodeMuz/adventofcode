@@ -47,3 +47,15 @@ $ ./a.out
 $ (javac part2.java); java part2;
 $ ./a.out
 ```
+
+&nbsp;
+#### Day 8
+ > Language: PHP
+
+##### open part1.php in webserver (php -S localhost:8000)
+&nbsp;
+
+#### Day 9
+ > Language: Python
+Ref: Travelling salesmen, with inverse waited graphs for part 2.
+https://github.com/dmishin/tsp-solver
