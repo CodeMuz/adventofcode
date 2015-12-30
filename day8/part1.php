@@ -1,22 +1,24 @@
 <?php
 
-function getStringCount($string){
+function getStringCount($string)
+{
 
     $string = trim($string);
 
     $codeCount = strlen($string);
 
-    $string = str_replace('\\\\','1',$string);
+    $string = str_replace('\\\\', '1', $string);
     $string = preg_replace('/\\\\x[a-z0-9][a-z0-9]/', "1", $string);
-    $string = str_replace('\"','1',$string);
+    $string = str_replace('\"', '1', $string);
 
-    $strlen = strlen( $string ) -2;
+    $strlen = strlen($string) - 2;
 
-    return array('cC' => $codeCount,'sC' => $strlen);
+    return array('cC' => $codeCount, 'sC' => $strlen);
 
 }
 
-function solve($fileName){
+function solve($fileName)
+{
 
     $handle = fopen($fileName, "r");
 
@@ -36,5 +38,5 @@ function solve($fileName){
     }
 
 }
+
 solve('input.txt');
-die;

@@ -6,7 +6,8 @@
  * Time: 01:25
  */
 
-function solve($fileName){
+function solve($fileName)
+{
 
     $handle = fopen($fileName, "r");
 
@@ -19,5 +20,5 @@ function solve($fileName){
         echo $totalC;
     }
 }
+
 solve('input.txt');
-die;

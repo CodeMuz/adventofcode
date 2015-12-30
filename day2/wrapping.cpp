@@ -44,23 +44,24 @@ int getWrappingQuanitity(int length, int width, int height){
 
 int getRibbonLength(int length, int width, int height){
 
-  int ribbon = 0;
-  int bow = 0;
+    int ribbon = 0;
+    int bow = 0;
 
-  int d[3];
-  d[0] = length;
-  d[1] = width;
-  d[2] = height;
+    int d[3];
+    d[0] = length;
+    d[1] = width;
+    d[2] = height;
 
-  std::sort(std::begin(d), std::end(d));
+    std::sort(std::begin(d), std::end(d));
 
-  ribbon += (2 * d[0]) + (2 * d[1]);
+    ribbon += (2 * d[0]) + (2 * d[1]);
 
-  bow += (length * width * height);
+    bow += (length * width * height);
 
-  ribbon += bow;
+    ribbon += bow;
 
-  return ribbon;
+    return ribbon;
+
 }
 
 int main () {
