@@ -33,7 +33,7 @@
     function drawPixel(x, y, r, g, b, a) {
         var index = (x + y * canvasWidth) * 4;
 
-        canvasData.data[index + 0] = r;
+        canvasData.data[index] = r;
         canvasData.data[index + 1] = g;
         canvasData.data[index + 2] = b;
         canvasData.data[index + 3] = a;
@@ -72,12 +72,12 @@
             for (var j = c.y1; j <= c.y2; j++) {
                 a[i][j] = action(a[i][j]);
             }
-        };
+        }
 
     }
 
     function calculateLights() {
-        var total = 0
+        var total = 0;
         for (i = 0; i < dim; i += 1) {
             for (j = 0; j < dim; j += 1) {
                 if (a[i][j] === 1) {
