@@ -67,3 +67,10 @@ https://github.com/dmishin/tsp-solver
 &nbsp; 
 #### Day 11
  > Language: Python
+
+&nbsp;
+#### Day 12
+ > Language: JavaScript
+
+##### To run open index.html in webserver / browser
+&nbsp;
