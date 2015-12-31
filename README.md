@@ -63,10 +63,18 @@ https://github.com/dmishin/tsp-solver
 &nbsp;
 #### Day 10
  > Language: Python
+```sh
+$ python part1.py
+$ python part2.py
+```
  
 &nbsp; 
 #### Day 11
  > Language: Python
+```sh
+$ python part1.py
+$ python part2.py
+```
 
 &nbsp;
 #### Day 12
