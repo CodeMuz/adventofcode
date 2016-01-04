@@ -1,8 +1,12 @@
+import itertools
+
 with open("input.txt") as f:
     content = f.readlines()
 
 distances = {}
 people = []
+H = 0
+
 for line in content:
     line = line.split(' ')
 
@@ -26,25 +30,25 @@ for line in content:
     else:
         node = distances[personA][personB] = value
 
-
-happiness = 0
-
-import itertools
-p = itertools.permutations(people)
-p = list(p)
-# print len(p)
-# print list(p[0])
+p = list(itertools.permutations(people))
 
 for iter in p:
+
+    happiness = 0
+
     personList = list(iter)
-    print personList
+
     for person in personList:
         index = personList.index(person)
-        if index != len(personList) - 1:
+        if index != (len(personList) - 1):
             nextPerson = index + 1
         else:
             nextPerson = 0
-        personB = people[nextPerson]
+        personB = personList[nextPerson]
         happiness += distances[person][personB]
+        happiness += distances[personB][person]
 
-print happiness
+    if happiness > H:
+        H = happiness
+
+print H
