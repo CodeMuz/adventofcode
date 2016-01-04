@@ -82,3 +82,9 @@ $ python part2.py
 
 ##### To run open index.html in webserver / browser
 &nbsp;
+
+#### Day 13
+ > Language: Python
+```sh
+$ python part1.py
+```
