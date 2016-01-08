@@ -8,33 +8,71 @@ print content
 rd = {}
 for line in content:
     line = line.split(' ')
-    rd[line[0]] = {'speed':line[3],'duration':line[6],'rest':line[13],'distance':0}
+    rd[line[0]] = {
+        'speed':int(line[3]),
+        'duration':int(line[6]),
+        'rest':int(line[13]),
+        'distance':0,
+        'points':0,
+        'running':int(line[6]),
+        'resttime':0,
+        'resting':False
+    }
 
-def calculateDistance(runner, tick):
-    running = int(rd[runner]['duration'])
-    resting = False
-    resttime = 0
-    print 'running: ' + runner
-    while tick > 1:
+def runRace(tick):
 
-        if running > 0 and resting == False:
-            rd[runner]['distance'] += int(rd[runner]['speed'])
-            running = running - 1
+    while tick > 0:
+        global rd
 
-        if resting == True:
-            resttime -= 1
+        for runner in rd:
 
-        if running == 0 and resting == False:
-            resting = True
-            resttime = int(rd[runner]['rest'])
+            if rd[runner]['running'] > 0 and rd[runner]['resting'] == False:
+                rd[runner]['distance'] += rd[runner]['speed']
+                rd[runner]['running'] -= 1
 
-        if resttime == 0 and resting == True:
-            resting = False
-            running = int(rd[runner]['duration'])
+            if rd[runner]['resting'] == True:
+                rd[runner]['resttime'] -= 1
+
+            if rd[runner]['running'] == 0 and rd[runner]['resting'] == False:
+                rd[runner]['resting'] = True
+                rd[runner]['resttime'] = rd[runner]['rest']
+
+            if rd[runner]['resttime'] == 0 and rd[runner]['resting'] == True:
+                rd[runner]['resting'] = False
+                rd[runner]['running'] = rd[runner]['duration']
+
+        winnerD = 0
+        winnerRunner = ''
+
+        jointWinners = []
+        for runner in rd:
+            if rd[runner]['distance'] > winnerD:
+                winnerD = rd[runner]['distance']
+                winnerRunner = runner
+        for runner in rd:
+            if rd[runner]['distance'] == winnerD and runner != winnerRunner:
+                if len(jointWinners) == 0:
+                    jointWinners.append(winnerRunner)
+                    jointWinners.append(runner)
+                else:
+                    jointWinners.append(runner)
+        if len(jointWinners) > 0:
+            for runner in jointWinners:
+                rd[runner]['points'] += 1
+        else:
+            rd[winnerRunner]['points'] += 1
 
         tick -= 1
-    return rd[runner]['distance']
 
 tick = 2503
+
+runRace(tick)
+
+totalPoints = 0
+
 for runner in rd:
-    print calculateDistance(runner,tick)
+    totalPoints += rd[runner]['points']
+    print runner
+    print rd[runner]['points']
+
+print "Total is %d points" % (totalPoints)
