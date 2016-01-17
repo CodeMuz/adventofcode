@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+category = ['capacity','durability','flavor','texture']
+
+n = []
+i = [0, 0, 0, 0]
+max = 100
+
 with open("input.txt") as f:
     content = f.readlines()
 
@@ -13,78 +19,46 @@ for line in content:
         'texture': int(line[8])
     }
 
-# n = []
-# i = [0, 0, 0, 0]
-# max = 100
-
-# Generate all pairs adding to 100
-# for a in range(max):
-#     i[0] = a
-#     for b in range(max):
-#         i[1] = b
-#         if i[0] + b >= max:
-#             break
-#         for c in range(max):
-#             i[2] = c
-#             if (i[0] + i[1] + i[2]) >= max:
-#                 break
-#             else:
-#                 i[3] = max - (i[0] + i[1] + i[2])
-#                 n.append(list(i))
-
-n = []
-i = [0, 0]
-max = 100
-
 for a in range(max):
     i[0] = a
-    i[1] = max - a
-    n.append(list(i))
+    for b in range(max):
+        i[1] = b
+        if i[0] + b >= max:
+            break
+        for c in range(max):
+            i[2] = c
+            if (i[0] + i[1] + i[2]) >= max:
+                break
+            else:
+                i[3] = max - (i[0] + i[1] + i[2])
+                n.append(list(i))
 
-print n
+def calcPerm(p):
 
+    t = {'capacity': 0,
+     'durability': 0,
+     'flavor': 0,
+     'texture': 0}
 
-# for k in n:
-#     print k
+    for c in category:
+        j = 0
+        for o in ingredients:
+            t[c] += p[j] * ingredients[o][c]
+            j += 1
+
+    total = 1
+    for v in t:
+        if t[v] < 0:
+            t[v] = 0
+        total *= t[v]
+
+    return total
 
 best = 0
-value = {'capacity': 0,
-         'durability': 0,
-         'flavor': 0,
-         'texture': 0
-         }
 
-print (len(ingredients))
 for x in n:
-
-    for i in ingredients:
-
-        for category in ingredients[i]:
-
-            for pos in range(len(x)):
-                print pos
-                value[category] += (x[pos] * ingredients[i][category])
-
-    total = value['capacity'] * value['durability'] * value['flavor'] * value['texture']
-
-
-    value = {'capacity': 0,
-         'durability': 0,
-         'flavor': 0,
-         'texture': 0
-         }
-
-    if total >= best:
-        best = total
+    result = calcPerm(x)
+    if result > best:
+        best = result
 
 print best
-
-        # value = {'capacity': 0,
-        #          'durability': 0,
-        #          'flavor': 0,
-        #          'texture': 0,
-        #          'calories': 0
-        #          }
-        # print total
-
-        # print ingredients
