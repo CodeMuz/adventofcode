@@ -21,15 +21,9 @@ for line in content:
 
 def calcLightPosition(currentLight, neighbours):
     if (currentLight == 1):
-        if (neighbours == 2 or neighbours == 3):
-            value = 1
-        else:
-            value = 0
+        value = 1 if (neighbours == 2 or neighbours == 3) else 0
     else:
-        if (neighbours == 3):
-            value = 1
-        else:
-            value = 0
+        value = 1 if (neighbours == 3) else 0
     return value
 
 def setCornersOn(grid):
@@ -50,22 +44,14 @@ for _ in range(runtime):
         for y in range(width):
             scratch[x].append([])
             r = 0
-            if 0 <= x - 1 < height:
-                r += grid[x - 1][y]
-            if 0 <= x + 1 < height:
-                r += grid[x + 1][y]
-            if 0 <= y + 1 < width:
-                r += grid[x][y + 1]
-            if 0 <= y - 1 < width:
-                r += grid[x][y - 1]
-            if 0 <= x - 1 < height and 0 <= y - 1 < width:
-                r += grid[x - 1][y - 1]
-            if 0 <= x - 1 < height and 0 <= y + 1 < width:
-                r += grid[x - 1][y + 1]
-            if 0 <= x + 1 < height and 0 <= y - 1 < width:
-                r += grid[x + 1][y - 1]
-            if 0 <= x + 1 < height and 0 <= y + 1 < width:
-                r += grid[x + 1][y + 1]
+            r += grid[x - 1][y] if 0 <= x - 1 < height else 0
+            r += grid[x + 1][y] if 0 <= x + 1 < height else 0
+            r += grid[x][y + 1] if 0 <= y + 1 < width else 0
+            r += grid[x][y - 1] if 0 <= y - 1 < width else 0
+            r += grid[x - 1][y - 1] if 0 <= x - 1 < height and 0 <= y - 1 < width else 0
+            r += grid[x - 1][y + 1] if 0 <= x - 1 < height and 0 <= y + 1 < width else 0
+            r += grid[x + 1][y - 1] if 0 <= x + 1 < height and 0 <= y - 1 < width else 0
+            r += grid[x + 1][y + 1] if 0 <= x + 1 < height and 0 <= y + 1 < width else 0
 
             scratch[x][y] = calcLightPosition(grid[x][y], r)
 
